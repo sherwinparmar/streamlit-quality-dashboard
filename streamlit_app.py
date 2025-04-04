@@ -33,9 +33,8 @@ input_df = user_input()
 # Show input for debugging
 st.write("Input Parameters", input_df)
 
-# Ensure same column order for scaling
-expected_cols = ['mould_temperature', 'injection_pressure', 'cycle_time', 'volume']
-input_df = input_df[expected_cols]
+# Ensure same column names and order as scaler expects
+input_df = input_df.reindex(columns=scaler.feature_names_in_)
 
 # Preprocess input
 scaled_input = scaler.transform(input_df)
